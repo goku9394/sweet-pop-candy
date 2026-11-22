@@ -37,7 +37,7 @@
       align-items: center;
       justify-content: center;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: linear-gradient(160deg, var(--bg-1), #3d1e6d 50%, #1d3557);
+      background: radial-gradient(circle at top, #4b1d8c, var(--bg-1) 52%, #132238);
       color: var(--text);
       padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
     }
@@ -49,9 +49,9 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 22px;
       padding: clamp(11px, 3.2vw, 16px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 22px 54px rgba(0, 0, 0, 0.5);
     }
 
     .header {
@@ -79,8 +79,8 @@
     }
 
     .level-badge {
-      background: rgba(255, 209, 102, 0.2);
-      border: 1px solid rgba(255, 209, 102, 0.5);
+      background: rgba(255, 209, 102, 0.22);
+      border: 1px solid rgba(255, 209, 102, 0.55);
       color: var(--accent);
       font-size: clamp(0.68rem, 2.5vw, 0.78rem);
       font-weight: 800;
@@ -110,6 +110,10 @@
 
     .btn-icon:hover {
       background: rgba(255, 255, 255, 0.24);
+    }
+
+    .btn-icon.muted {
+      opacity: 0.5;
     }
 
     .btn-restart {
@@ -147,7 +151,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 6px;
-      background: rgba(0, 0, 0, 0.24);
+      background: rgba(0, 0, 0, 0.26);
       padding: 4px;
       border-radius: 12px;
       margin-bottom: 10px;
@@ -156,7 +160,7 @@
 
     .mode-btn {
       background: transparent;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.82);
       border: none;
       border-radius: 9px;
       padding: 6px 8px;
@@ -175,7 +179,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: clamp(5px, 1.8vw, 8px);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .stat-box {
@@ -201,6 +205,24 @@
       font-weight: 800;
       margin-top: 2px;
       white-space: nowrap;
+    }
+
+    .progress-wrap {
+      width: 100%;
+      height: 8px;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #06d6a0, #ffd166, #ff006e);
+      border-radius: 999px;
+      transition: width 0.28s ease;
     }
 
     .board-container {
@@ -229,7 +251,7 @@
       background: linear-gradient(90deg, #ff006e, #ffbe0b);
       color: #120824;
       font-weight: 900;
-      font-size: clamp(0.75rem, 3vw, 0.85rem);
+      font-size: clamp(0.75rem, 3vw, 0.88rem);
       padding: 5px 14px;
       border-radius: 999px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
@@ -249,10 +271,10 @@
       display: grid;
       grid-template-columns: repeat(8, minmax(0, 1fr));
       gap: clamp(3px, 1.2vw, 5px);
-      background: rgba(15, 10, 30, 0.55);
+      background: rgba(15, 10, 30, 0.62);
       padding: clamp(6px, 2vw, 8px);
       border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.16);
       aspect-ratio: 1 / 1;
       width: 100%;
       max-height: min(68dvh, 424px);
@@ -291,7 +313,7 @@
       touch-action: none;
       transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s ease, opacity 0.22s ease;
       position: relative;
-      box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.25);
+      box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.28), inset 0 2px 3px rgba(255, 255, 255, 0.25);
       will-change: transform;
       min-width: 0;
       min-height: 0;
@@ -301,7 +323,7 @@
       transform: scale(1.1);
       outline: 3px solid #ffffff;
       z-index: 2;
-      box-shadow: 0 0 14px rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.85);
     }
 
     .cell.hint {
@@ -340,40 +362,40 @@
     .cell.matched {
       transform: scale(1.35) rotate(12deg);
       opacity: 0;
-      filter: brightness(1.6);
+      filter: brightness(1.65);
     }
 
     .cell.striped-h::after {
       content: "";
       position: absolute;
-      left: 12%;
-      right: 12%;
+      left: 10%;
+      right: 10%;
       height: 4px;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       border-radius: 999px;
-      box-shadow: 0 0 6px #fff;
+      box-shadow: 0 0 8px #fff;
     }
 
     .cell.striped-v::after {
       content: "";
       position: absolute;
-      top: 12%;
-      bottom: 12%;
+      top: 10%;
+      bottom: 10%;
       width: 4px;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       border-radius: 999px;
-      box-shadow: 0 0 6px #fff;
+      box-shadow: 0 0 8px #fff;
     }
 
     .cell.bomb {
-      background: radial-gradient(circle, #ffffff 10%, #ff006e 45%, #3a0ca3 100%) !important;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.85);
-      animation: pulseBomb 1.2s infinite alternate;
+      background: radial-gradient(circle, #ffffff 12%, #ff006e 48%, #3a0ca3 100%) !important;
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.9);
+      animation: pulseBomb 1.1s infinite alternate;
     }
 
     @keyframes pulseBomb {
       from { transform: scale(0.97); }
-      to { transform: scale(1.04); }
+      to { transform: scale(1.06); }
     }
 
     .pop-particle {
@@ -439,7 +461,6 @@
       }
     }
 
-    /* 6 Candy themes */
     .c-0 { background: linear-gradient(145deg, #ff4d6d, #c9184a); }
     .c-1 { background: linear-gradient(145deg, #ffbe0b, #fb8500); }
     .c-2 { background: linear-gradient(145deg, #06d6a0, #028090); }
@@ -451,14 +472,14 @@
       margin-top: 10px;
       font-size: clamp(0.74rem, 2.7vw, 0.82rem);
       text-align: center;
-      opacity: 0.9;
+      opacity: 0.92;
       min-height: 20px;
     }
 
     .modal {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.72);
+      background: rgba(0, 0, 0, 0.74);
       display: none;
       align-items: center;
       justify-content: center;
@@ -478,6 +499,7 @@
       max-width: 340px;
       width: 100%;
       text-align: center;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
     }
 
     .modal-card h2 {
@@ -487,7 +509,8 @@
 
     .modal-card p {
       margin: 0 0 18px;
-      opacity: 0.9;
+      opacity: 0.92;
+      line-height: 1.45;
     }
 
     .modal-actions {
@@ -547,13 +570,17 @@
       </div>
     </div>
 
+    <div class="progress-wrap" aria-hidden="true">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
     <div class="board-container" id="boardContainer">
       <div class="combo-banner" id="comboBanner">🔥 COMBO x2!</div>
       <div class="board" id="board" aria-label="Match 3 Game Board"></div>
       <div class="fx-layer" id="fxLayer" aria-hidden="true"></div>
     </div>
 
-    <div class="footer-note" id="statusText">Tap ya swipe karke 3+ candies match karein!</div>
+    <div class="footer-note" id="statusText">4 match = Striped • 5 match = 💣 Bomb!</div>
   </div>
 
   <div class="modal" id="endModal">
@@ -643,7 +670,7 @@
           osc.frequency.setValueAtTime(freq, now);
 
           gain.gain.setValueAtTime(0.001, now);
-          gain.gain.linearRampToValueAtTime(0.028, now + 0.03);
+          gain.gain.linearRampToValueAtTime(0.025, now + 0.03);
           gain.gain.exponentialRampToValueAtTime(0.0008, now + 0.24);
 
           osc.connect(gain);
@@ -669,6 +696,11 @@
           this.startMusic();
         }
         return !this.musicMuted;
+      }
+
+      toggleSfx() {
+        this.sfxMuted = !this.sfxMuted;
+        return !this.sfxMuted;
       }
 
       playSwipe() {
@@ -716,7 +748,7 @@
         const ctx = this.ensureContext();
         if (!ctx) return;
         const now = ctx.currentTime;
-        const baseFreq = Math.min(980, 420 + (combo - 1) * 90);
+        const baseFreq = Math.min(1040, 420 + (combo - 1) * 95);
 
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
@@ -743,7 +775,7 @@
         const gain = ctx.createGain();
         osc.type = "sawtooth";
         osc.frequency.setValueAtTime(160, now);
-        osc.frequency.exponentialRampToValueAtTime(760, now + 0.22);
+        osc.frequency.exponentialRampToValueAtTime(780, now + 0.22);
 
         gain.gain.setValueAtTime(0.11, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
@@ -832,6 +864,7 @@
     const scoreEl = document.getElementById("score");
     const goalEl = document.getElementById("goal");
     const bestScoreEl = document.getElementById("bestScore");
+    const progressBarEl = document.getElementById("progressBar");
     const statusTextEl = document.getElementById("statusText");
     const endModalEl = document.getElementById("endModal");
     const modalTitleEl = document.getElementById("modalTitle");
@@ -851,9 +884,7 @@
     function saveBestScore(val) {
       try {
         localStorage.setItem("sweetPopCrushBest", String(Math.floor(val)));
-      } catch {
-        // Ignore storage errors
-      }
+      } catch {}
     }
 
     function randomCandyType() {
@@ -866,6 +897,16 @@
 
     function cloneCell(cell) {
       return cell ? { type: cell.type, special: cell.special } : null;
+    }
+
+    function swapCells(a, b) {
+      const temp = board[a.r][a.c];
+      board[a.r][a.c] = board[b.r][b.c];
+      board[b.r][b.c] = temp;
+    }
+
+    function isAdjacent(a, b) {
+      return Math.abs(a.r - b.r) + Math.abs(a.c - b.c) === 1;
     }
 
     function fillBoardWithoutMatches() {
@@ -900,6 +941,66 @@
       } while (!findFirstValidMove() && attempts < 25);
     }
 
+    function findMatchGroups() {
+      const groups = [];
+
+      for (let r = 0; r < GRID_SIZE; r++) {
+        let c = 0;
+        while (c < GRID_SIZE) {
+          const base = board[r][c];
+          if (!base || base.special === "bomb") {
+            c++;
+            continue;
+          }
+          let end = c + 1;
+          while (
+            end < GRID_SIZE &&
+            board[r][end] &&
+            board[r][end].special !== "bomb" &&
+            board[r][end].type === base.type
+          ) {
+            end++;
+          }
+          const len = end - c;
+          if (len >= 3) {
+            const cells = [];
+            for (let k = c; k < end; k++) cells.push({ r, c: k });
+            groups.push({ orientation: "h", type: base.type, length: len, cells });
+          }
+          c = end;
+        }
+      }
+
+      for (let c = 0; c < GRID_SIZE; c++) {
+        let r = 0;
+        while (r < GRID_SIZE) {
+          const base = board[r][c];
+          if (!base || base.special === "bomb") {
+            r++;
+            continue;
+          }
+          let end = r + 1;
+          while (
+            end < GRID_SIZE &&
+            board[end][c] &&
+            board[end][c].special !== "bomb" &&
+            board[end][c].type === base.type
+          ) {
+            end++;
+          }
+          const len = end - r;
+          if (len >= 3) {
+            const cells = [];
+            for (let k = r; k < end; k++) cells.push({ r: k, c });
+            groups.push({ orientation: "v", type: base.type, length: len, cells });
+          }
+          r = end;
+        }
+      }
+
+      return { groups };
+    }
+
     function findFirstValidMove() {
       for (let r = 0; r < GRID_SIZE; r++) {
         for (let c = 0; c < GRID_SIZE; c++) {
@@ -930,6 +1031,31 @@
         }
       }
       return null;
+    }
+
+    function shuffleBoard() {
+      const pool = [];
+      for (let r = 0; r < GRID_SIZE; r++) {
+        for (let c = 0; c < GRID_SIZE; c++) {
+          if (board[r][c]) pool.push(cloneCell(board[r][c]));
+        }
+      }
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+      let idx = 0;
+      for (let r = 0; r < GRID_SIZE; r++) {
+        for (let c = 0; c < GRID_SIZE; c++) {
+          board[r][c] = pool[idx++];
+        }
+      }
+      if (!findFirstValidMove()) {
+        createInitialBoard();
+      }
+      renderBoard();
+      showComboBanner("🔀 NO MOVES — SHUFFLED!");
+      statusTextEl.textContent = "Naye moves ke saath board shuffle ho gaya!";
     }
 
     function clearHint() {
@@ -974,6 +1100,9 @@
       levelBadgeEl.textContent = `Level ${currentLevel}`;
       scoreEl.textContent = String(score);
       goalEl.textContent = String(targetScore);
+
+      const pct = Math.max(0, Math.min(100, (score / Math.max(1, targetScore)) * 100));
+      progressBarEl.style.width = `${pct}%`;
 
       if (gameMode === "rush") {
         limitLabelEl.textContent = "Time Left";
@@ -1090,170 +1219,116 @@
 
     function renderBoard(matchedSet = new Set()) {
       boardEl.innerHTML = "";
+      fxLayerEl.querySelectorAll(".swipe-trail").forEach((el) => el.remove());
+
       for (let r = 0; r < GRID_SIZE; r++) {
         for (let c = 0; c < GRID_SIZE; c++) {
           const cellData = board[r][c];
-          const candy = cellData ? (CANDY_TYPES[cellData.type] || CANDY_TYPES[0]) : CANDY_TYPES[0];
           const cellEl = document.createElement("div");
-          cellEl.className = `cell ${candy.cls}`;
+          cellEl.className = "cell";
           cellEl.dataset.r = String(r);
           cellEl.dataset.c = String(c);
 
-          if (cellData && cellData.special === "striped-h") {
-            cellEl.classList.add("striped-h");
-          } else if (cellData && cellData.special === "striped-v") {
-            cellEl.classList.add("striped-v");
-          } else if (cellData && cellData.special === "bomb") {
-            cellEl.classList.add("bomb");
+          const key = `${r},${c}`;
+          if (cellData) {
+            const candy = CANDY_TYPES[cellData.type] || CANDY_TYPES[0];
+            cellEl.classList.add(candy.cls);
+
+            if (cellData.special === "bomb") {
+              cellEl.classList.add("bomb");
+              cellEl.textContent = "💣";
+            } else {
+              cellEl.textContent = candy.symbol;
+              if (cellData.special === "striped-h") cellEl.classList.add("striped-h");
+              if (cellData.special === "striped-v") cellEl.classList.add("striped-v");
+            }
           }
 
           if (selected && selected.r === r && selected.c === c) {
             cellEl.classList.add("selected");
           }
 
-          if (hintCells.some((pt) => pt.r === r && pt.c === c)) {
-            cellEl.classList.add("hint");
-          }
-
-          if (bounceKeys.has(`${r},${c}`)) {
-            cellEl.classList.add("bounce-back");
-          }
-
           if (dragState && dragState.r === r && dragState.c === c && dragState.moved) {
             cellEl.classList.add("swipe-dragging");
-            cellEl.style.transform = `translate3d(${dragState.dx}px, ${dragState.dy}px, 0) scale(1.1)`;
+            cellEl.style.transform = `translate3d(${dragState.dx}px, ${dragState.dy}px, 0) scale(1.12)`;
           }
 
           if (dragState && dragState.targetPos && dragState.targetPos.r === r && dragState.targetPos.c === c) {
             cellEl.classList.add("swipe-target");
           }
 
-          if (matchedSet.has(`${r},${c}`)) {
+          if (bounceKeys.has(key)) {
+            cellEl.classList.add("bounce-back");
+          }
+
+          if (hintCells.some((h) => h.r === r && h.c === c)) {
+            cellEl.classList.add("hint");
+          }
+
+          if (matchedSet.has(key)) {
             cellEl.classList.add("matched");
           }
 
-          if (!cellData) {
-            cellEl.textContent = "";
-          } else if (cellData.special === "bomb") {
-            cellEl.textContent = "🌈";
-          } else {
-            cellEl.textContent = candy.symbol;
-          }
-
-          cellEl.addEventListener("pointerdown", (e) => handlePointerDown(e, r, c));
+          cellEl.addEventListener("pointerdown", onCellPointerDown);
           boardEl.appendChild(cellEl);
         }
       }
+
+      if (bounceKeys.size > 0) {
+        const keysSnapshot = new Set(bounceKeys);
+        bounceKeys.clear();
+        setTimeout(() => {
+          keysSnapshot.forEach((k) => {
+            const [br, bc] = k.split(",").map(Number);
+            const target = boardEl.querySelector(`.cell[data-r="${br}"][data-c="${bc}"]`);
+            if (target) target.classList.remove("bounce-back");
+          });
+        }, 300);
+      }
+
       renderSwipeTrail();
     }
 
-    function isAdjacent(a, b) {
-      return Math.abs(a.r - b.r) + Math.abs(a.c - b.c) === 1;
-    }
-
-    function swapCells(a, b) {
-      const temp = board[a.r][a.c];
-      board[a.r][a.c] = board[b.r][b.c];
-      board[b.r][b.c] = temp;
-    }
-
-    function findMatchGroups() {
-      const groups = [];
-      const allMatched = new Set();
-
-      for (let r = 0; r < GRID_SIZE; r++) {
-        let runStart = 0;
-        for (let c = 1; c <= GRID_SIZE; c++) {
-          const same =
-            c < GRID_SIZE &&
-            board[r][c] !== null &&
-            board[r][runStart] !== null &&
-            board[r][c].type === board[r][runStart].type;
-          if (!same) {
-            const runLen = c - runStart;
-            if (runLen >= 3 && board[r][runStart] !== null) {
-              const cells = [];
-              for (let k = runStart; k < c; k++) {
-                cells.push({ r, c: k });
-                allMatched.add(`${r},${k}`);
-              }
-              groups.push({ cells, orientation: "h", length: runLen });
-            }
-            runStart = c;
-          }
-        }
-      }
-
-      for (let c = 0; c < GRID_SIZE; c++) {
-        let runStart = 0;
-        for (let r = 1; r <= GRID_SIZE; r++) {
-          const same =
-            r < GRID_SIZE &&
-            board[r][c] !== null &&
-            board[runStart][c] !== null &&
-            board[r][c].type === board[runStart][c].type;
-          if (!same) {
-            const runLen = r - runStart;
-            if (runLen >= 3 && board[runStart][c] !== null) {
-              const cells = [];
-              for (let k = runStart; k < r; k++) {
-                cells.push({ r: k, c });
-                allMatched.add(`${k},${c}`);
-              }
-              groups.push({ cells, orientation: "v", length: runLen });
-            }
-            runStart = r;
-          }
-        }
-      }
-
-      return { groups, allMatched };
-    }
-
-    function expandSpecialEffects(initialSet, preferredPos = null) {
-      const finalSet = new Set(initialSet);
+    function expandSpecials(initialSet) {
+      const toClear = new Set(initialSet);
       const queue = Array.from(initialSet);
-      const processedSpecials = new Set();
+      const visitedSpecials = new Set();
+      let triggeredSpecial = false;
 
       while (queue.length > 0) {
         const key = queue.shift();
         const [r, c] = key.split(",").map(Number);
         const cell = board[r]?.[c];
-        if (!cell || !cell.special || processedSpecials.has(key)) continue;
+        if (!cell || !cell.special || visitedSpecials.has(key)) continue;
 
-        processedSpecials.add(key);
+        visitedSpecials.add(key);
+        triggeredSpecial = true;
 
         if (cell.special === "striped-h") {
           for (let col = 0; col < GRID_SIZE; col++) {
             const k = `${r},${col}`;
-            if (!finalSet.has(k)) {
-              finalSet.add(k);
+            if (!toClear.has(k)) {
+              toClear.add(k);
               queue.push(k);
             }
           }
         } else if (cell.special === "striped-v") {
           for (let row = 0; row < GRID_SIZE; row++) {
             const k = `${row},${c}`;
-            if (!finalSet.has(k)) {
-              finalSet.add(k);
+            if (!toClear.has(k)) {
+              toClear.add(k);
               queue.push(k);
             }
           }
         } else if (cell.special === "bomb") {
-          let targetType = cell.type;
-          if (preferredPos && (preferredPos.r !== r || preferredPos.c !== c)) {
-            const partner = board[preferredPos.r]?.[preferredPos.c];
-            if (partner && partner.special !== "bomb") {
-              targetType = partner.type;
-            }
-          }
+          const targetType = cell.type;
           for (let row = 0; row < GRID_SIZE; row++) {
             for (let col = 0; col < GRID_SIZE; col++) {
-              const other = board[row]?.[col];
+              const other = board[row][col];
               if (other && other.type === targetType) {
                 const k = `${row},${col}`;
-                if (!finalSet.has(k)) {
-                  finalSet.add(k);
+                if (!toClear.has(k)) {
+                  toClear.add(k);
                   queue.push(k);
                 }
               }
@@ -1262,49 +1337,41 @@
         }
       }
 
-      return finalSet;
+      return { toClear, triggeredSpecial };
     }
 
-    function determineSpecialCreations(groups, swapPair = null) {
-      const creations = new Map();
+    function triggerBombWithTarget(bombPos, otherPos) {
+      const bombCell = board[bombPos.r]?.[bombPos.c];
+      const otherCell = board[otherPos.r]?.[otherPos.c];
+      if (!bombCell || bombCell.special !== "bomb") return null;
 
-      for (const grp of groups) {
-        if (grp.length < 4) continue;
-
-        let anchor = grp.cells[Math.floor(grp.cells.length / 2)];
-        if (swapPair) {
-          const foundSwap = grp.cells.find(
-            (pt) =>
-              (pt.r === swapPair.first.r && pt.c === swapPair.first.c) ||
-              (pt.r === swapPair.second.r && pt.c === swapPair.second.c)
-          );
-          if (foundSwap) anchor = foundSwap;
+      const set = new Set([`${bombPos.r},${bombPos.c}`]);
+      if (otherCell && otherCell.special === "bomb") {
+        for (let r = 0; r < GRID_SIZE; r++) {
+          for (let c = 0; c < GRID_SIZE; c++) {
+            set.add(`${r},${c}`);
+          }
         }
-
-        const baseCell = board[anchor.r]?.[anchor.c];
-        const candyType = baseCell ? baseCell.type : randomCandyType();
-        const key = `${anchor.r},${anchor.c}`;
-
-        if (grp.length >= 5) {
-          creations.set(key, { type: candyType, special: "bomb" });
-        } else if (grp.length === 4) {
-          const special = grp.orientation === "h" ? "striped-v" : "striped-h";
-          if (!creations.has(key)) {
-            creations.set(key, { type: candyType, special });
+      } else {
+        const targetType = otherCell ? otherCell.type : bombCell.type;
+        for (let r = 0; r < GRID_SIZE; r++) {
+          for (let c = 0; c < GRID_SIZE; c++) {
+            if (board[r][c] && board[r][c].type === targetType) {
+              set.add(`${r},${c}`);
+            }
           }
         }
       }
-
-      return creations;
+      return expandSpecials(set).toClear;
     }
 
-    function applyGravityAndRefill() {
+    function dropAndRefillBoard() {
       for (let c = 0; c < GRID_SIZE; c++) {
         let writeRow = GRID_SIZE - 1;
         for (let r = GRID_SIZE - 1; r >= 0; r--) {
           if (board[r][c] !== null) {
-            board[writeRow][c] = cloneCell(board[r][c]);
             if (writeRow !== r) {
+              board[writeRow][c] = board[r][c];
               board[r][c] = null;
             }
             writeRow--;
@@ -1320,125 +1387,265 @@
       return new Promise((resolve) => setTimeout(resolve, ms));
     }
 
-    async function triggerBombSwap(bombPos, otherPos) {
-      const otherCell = board[otherPos.r][otherPos.c];
-      const toClear = new Set([`${bombPos.r},${bombPos.c}`]);
+    async function resolveMatches(preferredPos = null, customSet = null) {
+      let combo = 0;
 
-      if (otherCell && otherCell.special === "bomb") {
-        toClear.add(`${otherPos.r},${otherPos.c}`);
-        for (let r = 0; r < GRID_SIZE; r++) {
-          for (let c = 0; c < GRID_SIZE; c++) {
-            toClear.add(`${r},${c}`);
-          }
-        }
-        statusTextEl.textContent = "💥🌈 Double Color Bomb! Poora board clear!";
-        showComboBanner("💥 MEGA BOMB!");
-      } else if (otherCell) {
-        const targetType = otherCell.type;
-        for (let r = 0; r < GRID_SIZE; r++) {
-          for (let c = 0; c < GRID_SIZE; c++) {
-            if (board[r][c] && board[r][c].type === targetType) {
-              toClear.add(`${r},${c}`);
+      while (true) {
+        let matchedSet = null;
+        let createdSpecials = [];
+
+        if (combo === 0 && customSet && customSet.size > 0) {
+          matchedSet = customSet;
+        } else {
+          const { groups } = findMatchGroups();
+          if (groups.length === 0) break;
+
+          matchedSet = new Set();
+          for (const g of groups) {
+            for (const pt of g.cells) {
+              matchedSet.add(`${pt.r},${pt.c}`);
+            }
+
+            if (g.length >= 4) {
+              let anchor = g.cells[Math.floor(g.cells.length / 2)];
+              if (preferredPos) {
+                const hit = g.cells.find((pt) => pt.r === preferredPos.r && pt.c === preferredPos.c);
+                if (hit) anchor = hit;
+              }
+              const specialKind =
+                g.length >= 5
+                  ? "bomb"
+                  : g.orientation === "h"
+                  ? "striped-v"
+                  : "striped-h";
+              createdSpecials.push({
+                r: anchor.r,
+                c: anchor.c,
+                type: g.type,
+                special: specialKind
+              });
             }
           }
         }
-        statusTextEl.textContent = `🌈 Color Bomb Blast! ${CANDY_TYPES[targetType].symbol} candies pop!`;
-        showComboBanner("🌈 COLOR BLAST!");
-      }
-
-      const expanded = expandSpecialEffects(toClear, otherPos);
-      const pts = expanded.size * 60;
-      score += pts;
-      updateHUD();
-      audio.playSpecialBlast();
-      triggerScreenShake();
-      spawnPopEffects(expanded, pts);
-
-      renderBoard(expanded);
-      await sleep(240);
-
-      expanded.forEach((key) => {
-        const [r, c] = key.split(",").map(Number);
-        board[r][c] = null;
-      });
-
-      applyGravityAndRefill();
-      renderBoard();
-      await sleep(180);
-
-      await resolveCascades(null);
-    }
-
-    async function resolveCascades(initialSwapPair = null) {
-      let combo = 0;
-      let swapPairForPass = initialSwapPair;
-
-      while (true) {
-        const { groups, allMatched } = findMatchGroups();
-        if (allMatched.size === 0) break;
 
         combo++;
-        const creations = determineSpecialCreations(groups, swapPairForPass);
-        swapPairForPass = null;
+        const expanded = expandSpecials(matchedSet);
+        const finalSet = expanded.toClear;
 
-        const preferredPartner = initialSwapPair
-          ? (creations.has(`${initialSwapPair.first.r},${initialSwapPair.first.c}`)
-              ? initialSwapPair.second
-              : initialSwapPair.first)
-          : null;
+        const basePoints = finalSet.size * 50;
+        const comboBonus = combo > 1 ? (combo - 1) * 120 : 0;
+        const earned = basePoints + comboBonus;
+        score += earned;
 
-        const finalSet = expandSpecialEffects(allMatched, preferredPartner);
-        const points = finalSet.size * 50 * combo;
-        score += points;
+        if (gameMode === "rush" && combo >= 2) {
+          timeLeft += 2;
+          statusTextEl.textContent = `⚡ Combo x${combo}! +2s bonus time & +${earned} pts!`;
+        } else if (combo > 1) {
+          statusTextEl.textContent = `🔥 Chain Combo x${combo}! +${earned} points!`;
+        } else {
+          statusTextEl.textContent = `🍬 Sweet pop! +${earned} points!`;
+        }
+
         updateHUD();
 
-        const isBigEvent = creations.size > 0 || finalSet.size > allMatched.size || combo >= 2;
-        if (isBigEvent) {
-          audio.playSpecialBlast();
+        if (combo >= 2 || expanded.triggeredSpecial || finalSet.size >= 4) {
           triggerScreenShake();
+          audio.playSpecialBlast();
+          showComboBanner(
+            expanded.triggeredSpecial
+              ? `💥 SPECIAL BLAST x${combo}!`
+              : `🔥 COMBO x${combo}!`
+          );
         } else {
           audio.playPop(combo);
         }
 
-        if (combo >= 2) {
-          showComboBanner(`🔥 COMBO x${combo}!`);
-        } else if (creations.size > 0) {
-          showComboBanner("⚡ SPECIAL CANDY!");
-        }
-
-        spawnPopEffects(finalSet, points);
-
-        if (creations.size > 0) {
-          statusTextEl.textContent = `⚡ Special Candy Created! +${points} points!`;
-        } else {
-          statusTextEl.textContent =
-            combo > 1
-              ? `🔥 Combo x${combo}! +${points} points!`
-              : `✨ Nice match! +${points} points!`;
-        }
-
+        spawnPopEffects(finalSet, earned);
         renderBoard(finalSet);
-        await sleep(230);
+        await sleep(250);
 
         finalSet.forEach((key) => {
           const [r, c] = key.split(",").map(Number);
-          if (creations.has(key)) {
-            board[r][c] = creations.get(key);
-          } else {
-            board[r][c] = null;
-          }
+          board[r][c] = null;
         });
 
-        applyGravityAndRefill();
+        for (const sp of createdSpecials) {
+          if (board[sp.r]?.[sp.c] === null) {
+            board[sp.r][sp.c] = makeCell(sp.type, sp.special);
+          }
+        }
+
+        dropAndRefillBoard();
         renderBoard();
-        await sleep(185);
+        await sleep(210);
       }
 
       if (!findFirstValidMove()) {
-        statusTextEl.textContent = "🔄 Koi valid move nahi bacha — board reshuffle ho raha hai!";
-        audio.playSwipe();
-        await sleep(450);
-        createInitialBoard();
+        shuffleBoard();
+      }
+    }
+
+    async function attemptSwap(posA, posB) {
+      if (isBusy || !isAdjacent(posA, posB)) return;
+      const cellA = board[posA.r]?.[posA.c];
+      const cellB = board[posB.r]?.[posB.c];
+      if (!cellA || !cellB) return;
+
+      isBusy = true;
+      clearTimeout(idleTimer);
+      clearHint();
+      selected = null;
+
+      swapCells(posA, posB);
+      renderBoard();
+      audio.playSwipe();
+      await sleep(140);
+
+      let bombSet = null;
+      if (cellA.special === "bomb") {
+        bombSet = triggerBombWithTarget(posB, posA);
+      } else if (cellB.special === "bomb") {
+        bombSet = triggerBombWithTarget(posA, posB);
+      }
+
+      const hasNormalMatch = findMatchGroups().groups.length > 0;
+
+      if (!bombSet && !hasNormalMatch) {
+        swapCells(posA, posB);
+        bounceKeys.add(`${posA.r},${posA.c}`);
+        bounceKeys.add(`${posB.r},${posB.c}`);
+        audio.playInvalid();
+        statusTextEl.textContent = "Is swap se match nahi bana!";
+        renderBoard();
+        await sleep(260);
+        isBusy = false;
+        resetIdleTimer();
+        return;
+      }
+
+      if (gameMode === "moves") {
+        moves = Math.max(0, moves - 1);
+        updateHUD();
+      }
+
+      await resolveMatches(posB, bombSet);
+
+      isBusy = false;
+      checkEndCondition();
+      if (!endModalEl.classList.contains("active")) {
+        resetIdleTimer();
+      }
+    }
+
+    function onCellPointerDown(e) {
+      if (isBusy || endModalEl.classList.contains("active")) return;
+      audio.ensureContext();
+      audio.startMusic();
+      resetIdleTimer();
+
+      const cellEl = e.currentTarget;
+      const r = Number(cellEl.dataset.r);
+      const c = Number(cellEl.dataset.c);
+      if (Number.isNaN(r) || Number.isNaN(c)) return;
+
+      const cellRect = cellEl.getBoundingClientRect();
+      dragState = {
+        pointerId: e.pointerId,
+        r,
+        c,
+        startX: e.clientX,
+        startY: e.clientY,
+        dx: 0,
+        dy: 0,
+        moved: false,
+        threshold: Math.max(16, cellRect.width * 0.34),
+        targetPos: null
+      };
+
+      try {
+        cellEl.setPointerCapture(e.pointerId);
+      } catch {}
+
+      cellEl.addEventListener("pointermove", onCellPointerMove);
+      cellEl.addEventListener("pointerup", onCellPointerUp);
+      cellEl.addEventListener("pointercancel", onCellPointerUp);
+    }
+
+    function onCellPointerMove(e) {
+      if (!dragState || e.pointerId !== dragState.pointerId || isBusy) return;
+
+      const rawDx = e.clientX - dragState.startX;
+      const rawDy = e.clientY - dragState.startY;
+      const maxOffset = dragState.threshold * 1.15;
+
+      if (Math.hypot(rawDx, rawDy) > 6) {
+        dragState.moved = true;
+      }
+
+      if (Math.abs(rawDx) >= Math.abs(rawDy)) {
+        const clampedX = Math.max(-maxOffset, Math.min(maxOffset, rawDx));
+        dragState.dx = clampedX;
+        dragState.dy = rawDy * 0.25;
+        if (Math.abs(rawDx) >= dragState.threshold) {
+          const nc = dragState.c + (rawDx > 0 ? 1 : -1);
+          dragState.targetPos = nc >= 0 && nc < GRID_SIZE ? { r: dragState.r, c: nc } : null;
+        } else {
+          dragState.targetPos = null;
+        }
+      } else {
+        const clampedY = Math.max(-maxOffset, Math.min(maxOffset, rawDy));
+        dragState.dy = clampedY;
+        dragState.dx = rawDx * 0.25;
+        if (Math.abs(rawDy) >= dragState.threshold) {
+          const nr = dragState.r + (rawDy > 0 ? 1 : -1);
+          dragState.targetPos = nr >= 0 && nr < GRID_SIZE ? { r: nr, c: dragState.c } : null;
+        } else {
+          dragState.targetPos = null;
+        }
+      }
+
+      renderBoard();
+    }
+
+    function cleanupPointerListeners(el) {
+      el.removeEventListener("pointermove", onCellPointerMove);
+      el.removeEventListener("pointerup", onCellPointerUp);
+      el.removeEventListener("pointercancel", onCellPointerUp);
+    }
+
+    async function onCellPointerUp(e) {
+      const cellEl = e.currentTarget;
+      cleanupPointerListeners(cellEl);
+
+      if (!dragState || e.pointerId !== dragState.pointerId) return;
+      const currentDrag = dragState;
+      dragState = null;
+
+      if (currentDrag.moved && currentDrag.targetPos) {
+        await attemptSwap({ r: currentDrag.r, c: currentDrag.c }, currentDrag.targetPos);
+        return;
+      }
+
+      renderBoard();
+
+      const clicked = { r: currentDrag.r, c: currentDrag.c };
+      if (!selected) {
+        selected = clicked;
+        renderBoard();
+        return;
+      }
+
+      if (selected.r === clicked.r && selected.c === clicked.c) {
+        selected = null;
+        renderBoard();
+        return;
+      }
+
+      if (isAdjacent(selected, clicked)) {
+        const prev = selected;
+        await attemptSwap(prev, clicked);
+      } else {
+        selected = clicked;
         renderBoard();
       }
     }
@@ -1455,10 +1662,7 @@
       if (gameMode !== "rush") return;
 
       rushTimer = setInterval(() => {
-        if (endModalEl.classList.contains("active")) {
-          stopRushTimer();
-          return;
-        }
+        if (endModalEl.classList.contains("active")) return;
         if (isBusy) return;
 
         timeLeft = Math.max(0, timeLeft - 1);
@@ -1466,246 +1670,78 @@
 
         if (timeLeft <= 0) {
           stopRushTimer();
-          checkEndCondition(true);
+          checkEndCondition();
         }
       }, 1000);
     }
 
-    function checkEndCondition(forceTimeOut = false) {
-      if (score >= targetScore) {
-        stopRushTimer();
-        clearTimeout(idleTimer);
-        audio.playWin();
-        modalTitleEl.textContent = `🎉 Level ${currentLevel} Clear!`;
-        modalMessageEl.textContent =
-          gameMode === "rush"
-            ? `Rush Complete! Score: ${score} / ${targetScore} (${timeLeft}s bache).`
-            : `Badhai ho! Score: ${score} / ${targetScore} (${moves} moves bache).`;
-        modalNextLevelBtn.style.display = "inline-block";
-        endModalEl.classList.add("active");
-        return true;
-      }
-
-      if (gameMode === "rush") {
-        if (forceTimeOut || timeLeft <= 0) {
-          stopRushTimer();
-          clearTimeout(idleTimer);
-          audio.playLose();
-          modalTitleEl.textContent = "⏱️ Time's Up!";
-          modalMessageEl.textContent = `Level ${currentLevel} Score: ${score} / ${targetScore}. Ek aur try karein!`;
-          modalNextLevelBtn.style.display = "none";
-          endModalEl.classList.add("active");
-          return true;
-        }
-      } else if (moves <= 0) {
-        clearTimeout(idleTimer);
-        audio.playLose();
-        modalTitleEl.textContent = "Out of Moves!";
-        modalMessageEl.textContent = `Level ${currentLevel} Score: ${score} / ${targetScore}. Ek aur try karein!`;
-        modalNextLevelBtn.style.display = "none";
-        endModalEl.classList.add("active");
-        return true;
-      }
-
-      return false;
-    }
-
-    async function attemptSwap(first, clicked) {
-      if (isBusy || endModalEl.classList.contains("active")) return;
-      if (gameMode === "moves" && moves <= 0) return;
-      if (gameMode === "rush" && timeLeft <= 0) return;
-
-      audio.startMusic();
+    function openModal(won) {
+      stopRushTimer();
       clearTimeout(idleTimer);
       clearHint();
 
-      isBusy = true;
+      if (won) {
+        audio.playWin();
+        modalTitleEl.textContent = `🎉 Level ${currentLevel} Cleared!`;
+        modalMessageEl.textContent = `Shandaar! Aapne ${score} score banaya (Goal: ${targetScore}).`;
+        modalNextLevelBtn.style.display = "inline-block";
+      } else {
+        audio.playLose();
+        modalTitleEl.textContent = gameMode === "rush" ? "⏱️ Time's Up!" : "Moves Khatam!";
+        modalMessageEl.textContent = `Final Score: ${score} / Goal: ${targetScore}. Dobara koshish karein!`;
+        modalNextLevelBtn.style.display = "none";
+      }
+
+      endModalEl.classList.add("active");
+    }
+
+    function checkEndCondition() {
+      if (endModalEl.classList.contains("active")) return;
+
+      if (score >= targetScore) {
+        openModal(true);
+        return;
+      }
+
+      if (gameMode === "moves" && moves <= 0) {
+        openModal(false);
+      } else if (gameMode === "rush" && timeLeft <= 0) {
+        openModal(false);
+      }
+    }
+
+    function startLevel(lvl, resetTotalScore = false) {
+      currentLevel = Math.max(1, lvl);
+      const cfg = getLevelConfig(currentLevel);
+      targetScore = cfg.goal;
+      moves = cfg.moves;
+      timeLeft = cfg.rushSeconds;
+
+      if (resetTotalScore || currentLevel === 1) {
+        score = 0;
+      }
+
       selected = null;
       dragState = null;
-
-      audio.playSwipe();
-
-      const cellA = board[first.r][first.c];
-      const cellB = board[clicked.r][clicked.c];
-
-      swapCells(first, clicked);
-      renderBoard();
-      await sleep(165);
-
-      if ((cellA && cellA.special === "bomb") || (cellB && cellB.special === "bomb")) {
-        if (gameMode === "moves") moves = Math.max(0, moves - 1);
-        updateHUD();
-        const bombPos = cellB && cellB.special === "bomb" ? clicked : first;
-        const otherPos = bombPos === clicked ? first : clicked;
-        await triggerBombSwap(bombPos, otherPos);
-        isBusy = false;
-        if (!checkEndCondition()) resetIdleTimer();
-        return;
-      }
-
-      const { allMatched } = findMatchGroups();
-      if (allMatched.size === 0) {
-        audio.playInvalid();
-        swapCells(first, clicked);
-        bounceKeys = new Set([`${first.r},${first.c}`, `${clicked.r},${clicked.c}`]);
-        statusTextEl.textContent = "Yahan koi match nahi bana—kisi aur pair ko try karein.";
-        renderBoard();
-        await sleep(280);
-        bounceKeys.clear();
-        renderBoard();
-        isBusy = false;
-        resetIdleTimer();
-        return;
-      }
-
-      if (gameMode === "moves") moves = Math.max(0, moves - 1);
-      updateHUD();
-      await resolveCascades({ first, second: clicked });
-
+      bounceKeys.clear();
+      hintCells = [];
       isBusy = false;
-      if (!checkEndCondition()) resetIdleTimer();
-    }
+      endModalEl.classList.remove("active");
 
-    async function handleTapSelection(r, c) {
-      if (isBusy || endModalEl.classList.contains("active")) return;
-      audio.startMusic();
-      resetIdleTimer();
-
-      const clicked = { r, c };
-      if (!selected) {
-        selected = clicked;
-        audio.playSwipe();
-        renderBoard();
-        return;
-      }
-
-      if (selected.r === r && selected.c === c) {
-        selected = null;
-        renderBoard();
-        return;
-      }
-
-      if (!isAdjacent(selected, clicked)) {
-        selected = clicked;
-        audio.playSwipe();
-        renderBoard();
-        return;
-      }
-
-      const first = selected;
-      await attemptSwap(first, clicked);
-    }
-
-    function handlePointerDown(e, r, c) {
-      if (isBusy || endModalEl.classList.contains("active")) return;
-      if (e.pointerType === "mouse" && e.button !== 0) return;
-
-      if (e.cancelable) e.preventDefault();
-      audio.startMusic();
-      resetIdleTimer();
-
-      dragState = {
-        startX: e.clientX,
-        startY: e.clientY,
-        r,
-        c,
-        dx: 0,
-        dy: 0,
-        targetPos: null,
-        moved: false,
-        axis: null
-      };
-    }
-
-    window.addEventListener("pointermove", (e) => {
-      if (!dragState || isBusy) return;
-      if (e.cancelable) e.preventDefault();
-
-      const rawDx = e.clientX - dragState.startX;
-      const rawDy = e.clientY - dragState.startY;
-      const absX = Math.abs(rawDx);
-      const absY = Math.abs(rawDy);
-
-      if (!dragState.moved && absX < 12 && absY < 12) return;
-
-      dragState.moved = true;
-      const boardRect = boardEl.getBoundingClientRect();
-      const maxSlide = Math.max(18, (boardRect.width / GRID_SIZE) * 0.44);
-
-      if (!dragState.axis && Math.max(absX, absY) >= 14) {
-        dragState.axis = absX >= absY ? "x" : "y";
-      }
-
-      let targetPos = null;
-      if (dragState.axis === "x") {
-        dragState.dx = Math.max(-maxSlide, Math.min(maxSlide, rawDx * 0.65));
-        dragState.dy = 0;
-        if (absX >= 24) {
-          const tc = dragState.c + (rawDx > 0 ? 1 : -1);
-          if (tc >= 0 && tc < GRID_SIZE) {
-            targetPos = { r: dragState.r, c: tc };
-          }
-        }
-      } else if (dragState.axis === "y") {
-        dragState.dx = 0;
-        dragState.dy = Math.max(-maxSlide, Math.min(maxSlide, rawDy * 0.65));
-        if (absY >= 24) {
-          const tr = dragState.r + (rawDy > 0 ? 1 : -1);
-          if (tr >= 0 && tr < GRID_SIZE) {
-            targetPos = { r: tr, c: dragState.c };
-          }
-        }
-      }
-
-      dragState.targetPos = targetPos;
+      createInitialBoard();
+      updateHUD();
       renderBoard();
-    }, { passive: false });
+      startRushTimer();
+      resetIdleTimer();
 
-    window.addEventListener("pointerup", (e) => {
-      if (!dragState) return;
-      const currentDrag = dragState;
-      dragState = null;
-
-      if (!currentDrag.moved) {
-        renderBoard();
-        handleTapSelection(currentDrag.r, currentDrag.c);
-        return;
-      }
-
-      const dx = e.clientX - currentDrag.startX;
-      const dy = e.clientY - currentDrag.startY;
-      const swapThreshold = 30;
-
-      if (Math.abs(dx) < swapThreshold && Math.abs(dy) < swapThreshold) {
-        renderBoard();
-        return;
-      }
-
-      let targetR = currentDrag.r;
-      let targetC = currentDrag.c;
-
-      if (Math.abs(dx) > Math.abs(dy)) {
-        targetC += dx > 0 ? 1 : -1;
-      } else {
-        targetR += dy > 0 ? 1 : -1;
-      }
-
-      if (targetR < 0 || targetR >= GRID_SIZE || targetC < 0 || targetC >= GRID_SIZE) {
-        renderBoard();
-        return;
-      }
-
-      attemptSwap({ r: currentDrag.r, c: currentDrag.c }, { r: targetR, c: targetC });
-    });
-
-    window.addEventListener("pointercancel", () => {
-      if (dragState) {
-        dragState = null;
-        renderBoard();
-      }
-    });
+      statusTextEl.textContent =
+        gameMode === "rush"
+          ? `⏱️ Level ${currentLevel}: ${timeLeft}s mein ${targetScore} score banayein!`
+          : `🎯 Level ${currentLevel}: ${moves} moves mein ${targetScore} score banayein!`;
+    }
 
     function setGameMode(mode) {
+      if (mode !== "moves" && mode !== "rush") return;
       gameMode = mode;
       modeMovesBtnEl.classList.toggle("active", mode === "moves");
       modeRushBtnEl.classList.toggle("active", mode === "rush");
@@ -1713,55 +1749,23 @@
     }
 
     musicBtnEl.addEventListener("click", () => {
-      const isPlaying = audio.toggleMusic();
-      musicBtnEl.textContent = isPlaying ? "🎵" : "🎶";
-      musicBtnEl.style.opacity = isPlaying ? "1" : "0.55";
+      const isOn = audio.toggleMusic();
+      musicBtnEl.classList.toggle("muted", !isOn);
+      musicBtnEl.textContent = isOn ? "🎵" : "🔇";
     });
 
     soundBtnEl.addEventListener("click", () => {
-      audio.sfxMuted = !audio.sfxMuted;
-      soundBtnEl.textContent = audio.sfxMuted ? "🔇" : "🔊";
-      if (!audio.sfxMuted) {
-        audio.ensureContext();
-        audio.playSwipe();
-      }
+      const isOn = audio.toggleSfx();
+      soundBtnEl.classList.toggle("muted", !isOn);
+      soundBtnEl.textContent = isOn ? "🔊" : "🔈";
     });
 
     modeMovesBtnEl.addEventListener("click", () => setGameMode("moves"));
     modeRushBtnEl.addEventListener("click", () => setGameMode("rush"));
 
-    function startLevel(lvl, resetTotalScore = false) {
-      stopRushTimer();
-      clearTimeout(idleTimer);
-      currentLevel = lvl;
-      const cfg = getLevelConfig(currentLevel);
-      targetScore = cfg.goal;
-      moves = cfg.moves;
-      timeLeft = cfg.rushSeconds;
-      if (resetTotalScore) {
-        score = 0;
-      }
-      selected = null;
-      dragState = null;
-      bounceKeys.clear();
-      hintCells = [];
-      isBusy = false;
-      fxLayerEl.innerHTML = "";
-      comboBannerEl.classList.remove("show");
-      modalNextLevelBtn.style.display = "none";
-      endModalEl.classList.remove("active");
-
-      statusTextEl.textContent =
-        gameMode === "rush"
-          ? `Level ${currentLevel} Rush: ${timeLeft}s mein ${targetScore} score banayein!`
-          : `Level ${currentLevel}: Goal ${targetScore} in ${moves} moves!`;
-
-      createInitialBoard();
-      updateHUD();
-      renderBoard();
-      startRushTimer();
-      resetIdleTimer();
-    }
+    document.getElementById("restartBtn").addEventListener("click", () => {
+      startLevel(currentLevel, true);
+    });
 
     modalNextLevelBtn.addEventListener("click", () => {
       startLevel(currentLevel + 1, false);
@@ -1769,11 +1773,6 @@
 
     modalPlayAgainBtn.addEventListener("click", () => {
       startLevel(currentLevel, true);
-    });
-
-    document.getElementById("restartBtn").addEventListener("click", () => {
-      audio.startMusic();
-      startLevel(1, true);
     });
 
     startLevel(1, true);
